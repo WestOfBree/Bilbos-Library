@@ -1,5 +1,4 @@
 import React from "react";
-import { books } from "../data";
 import Book from "../components/Book";
 
 
@@ -30,7 +29,7 @@ const Books = ({ books: initialBooks }) => {
                   All Books
                 </h2>
                 <select name="filter" id="filter" defaultValue="DEFAULT" onChange={(event) => filterBooks(event)}>
-                  <option value="DEFAULT" selected disabled> Sort</option>
+                  <option value="DEFAULT" disabled> Sort</option>
                   <option value="LOW_TO_HIGH">Price: Low to High</option>
                   <option value="HIGH_TO_LOW">Price: High to Low</option>
                   <option value="RATING">Rating</option>

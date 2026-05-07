@@ -1,7 +1,26 @@
 import React from "react";
 
-function Cart({ books }) {
-  
+function Cart({
+  cart,
+  removeFromCart,
+  updateCartItemQuantity,
+  cartTotals,
+  formatMoney,
+}) {
+  if (!cart.length) {
+    return (
+      <div className="books__body">
+        <main id="books__main">
+          <div className="books__container">
+            <div className="row row__column">
+              <h2 className="cart__title">Your cart is empty</h2>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
   return (
    <div className="books__body">
     <main id="books__main">
@@ -16,36 +35,49 @@ function Cart({ books }) {
                 <div className="cart__total">Total</div>
               </div>
               <div className="cart__body">
-                <div className="cart__item">
-                  <div className="cart__book">
-                    <img src="/path/to/book/image.jpg" alt="" className="cart__book--img" />
-                    <div className="cart__book--info">
-                      <span className="cart__book--title">Book Title</span>
-                      <span className="cart__book--price">$10.00</span>
-                      <button className="cart__book--remove">Remove</button>
+                {cart.map((book) => {
+                  const unitPrice = book.salePrice || book.originalPrice;
+                  return (
+                    <div className="cart__item" key={book.id}>
+                      <div className="cart__book">
+                        <img src={book.url} alt={`${book.title} cover`} className="cart__book--img" />
+                        <div className="cart__book--info">
+                          <span className="cart__book--title">{book.title}</span>
+                          <span className="cart__book--price">{formatMoney(unitPrice)}</span>
+                          <button className="cart__book--remove" onClick={() => removeFromCart(book.id)}>Remove</button>
+                        </div>
+                      </div>
+                      <div className="cart__quantity">
+                        <input
+                          type="number"
+                          min="1"
+                          value={book.quantity}
+                          className="cart__quantity--input"
+                          onChange={(event) =>
+                            updateCartItemQuantity(book.id, Number(event.target.value))
+                          }
+                        />
+                      </div>
+                      <div className="cart__total">
+                        {formatMoney(unitPrice * book.quantity)}
+                      </div>
                     </div>
-                  </div>
-                  <div className="cart__quantity">
-                    <input type="number" min="1" defaultValue="1" className="cart__quantity--input" />
-                  </div>
-                  <div className="cart__total">
-                    $10.00
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
             <div className="cart__summary">
               <div className="cart__summary--item cart__summary--sub-total">
                 <span>Subtotal</span>
-                <span>$10.00</span>
+                <span>{formatMoney(cartTotals.subTotal)}</span>
               </div>
               <div className="cart__summary--item">
                 <span>Tax</span>
-                <span>$0.80</span>
+                <span>{formatMoney(cartTotals.tax)}</span>
               </div>
               <div className="cart__summary--item cart__summary--total">
                 <span>Total</span>
-                <span>$10.80</span>
+                <span>{formatMoney(cartTotals.total)}</span>
               </div>
               <button className="btn btn__checkout no-cursor" onClick={() => alert("this button has no functionality yet")}>Checkout</button>
             </div>

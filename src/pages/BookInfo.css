@@ -3,8 +3,11 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  color: #2f1f15;
+  font-family: 'Cinzel', serif;
 }   
 .book__selected--title--top {
   font-size: 2rem;
   font-weight: 700;
+  letter-spacing: 0.7px;
 }
