@@ -1,7 +1,7 @@
 ## Bilbo's Library
 A React book store project built for class.
 
-This website was a class project showcasing a simple ecommerce site. The prompt we were given was to build a book store app. Assets were provided (logo + illustrations), along with book data to display across the site.
+This website was a class project showcasing a simple ecommerce site. The prompt we were given was to build a book store app. Assets were provided (logo + illustrations), along with book data to display across the site. I however went a step further from the original class assets by curating my own in-app book data to match the theme and style of Bilbo's Library.
 
 ## Tech Used
 
@@ -35,4 +35,4 @@ This website was a class project showcasing a simple ecommerce site. The prompt 
 
 This project was focused on applying front-end fundamentals in a practical ecommerce build: routing, reusable components, and interactive state-driven UI.
 
-I also went a step further from the original class assets by curating my own in-app book data to match the theme and style of Bilbo's Library.
+
